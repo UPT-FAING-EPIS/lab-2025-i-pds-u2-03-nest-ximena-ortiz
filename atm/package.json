@@ -1,9 +1,12 @@
 {
-  "name": "atm",
+  "name": "@UPT-FAING-EPIS/atm",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "version": "0.0.1",
   "description": "",
   "author": "",
-  "private": true,
+  "private": false,
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
@@ -23,6 +26,7 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
+    "@UPT-FAING-EPIS/atm": "file:",
     "atm": "file:",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"

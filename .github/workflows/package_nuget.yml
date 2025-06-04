@@ -1,0 +1,40 @@
+name: Package and Publish
+# nuget
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Install, Test & Publish Payment
+        run: |
+          cd payment
+          npm ci
+          npm run test:cov
+          npm version patch
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install, Test & Publish ATM
+        run: |
+          cd ../atm
+          npm ci
+          npm run test:cov
+          npm version patch
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
